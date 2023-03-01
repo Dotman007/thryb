@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import baseUrl from '../../api/baseUrl'
 const AddNewTalkFour = ({
   page,
   setPage,
@@ -47,7 +48,7 @@ const AddNewTalkFour = ({
         console.log(body);
         body = JSON.stringify(body);
         let result = await fetch(
-          "https://thrybe.azurewebsites.net/api/BackofficeUser/AddThrybeTalk",
+          `${baseUrl()}/AddThrybeTalk`,
           {
             method: "POST",
             headers: {

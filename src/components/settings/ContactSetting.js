@@ -5,6 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import api from "../api/base";
+import baseUrl from '../api/baseUrl'
+
 
 const ContactSetting = () => {
   const [selected, setSelected] = useState("");
@@ -38,7 +40,7 @@ const ContactSetting = () => {
 
         body = JSON.stringify(body);
         let result = await fetch(
-          "https://thrybe.azurewebsites.net/api/BackofficeUser/ContactInformationSetting",
+          `${baseUrl()}/ContactInformationSetting`,
           {
             method: "POST",
             headers: {

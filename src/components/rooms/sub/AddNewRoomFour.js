@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import baseUrl from '../../api/baseUrl'
 const AddNewRoomFour = ({
   page,
   setPage,
@@ -64,7 +64,7 @@ const AddNewRoomFour = ({
         setShowSpinner(true);
         body = JSON.stringify(body);
         let result = await fetch(
-          "https://thrybe.azurewebsites.net/api/BackofficeUser/CreateThrybeRoomFromBackOffice",
+          `${baseUrl()}/CreateThrybeRoomFromBackOffice`,
           {
             method: "POST",
             headers: {

@@ -9,7 +9,7 @@ import UsersMain from "./UsersMain";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { fetchDataWithAxios } from "../../config/fetchDataWithAxios";
-
+import baseUrl from "../api/baseUrl";
 const UsersMainContainer = ({
   page,
   setPage,
@@ -102,7 +102,7 @@ const UsersMainContainer = ({
           console.log(key, `: ${value}`);
       }
         let result = await fetch(
-          "https://thrybe.azurewebsites.net/api/BackofficeUser/CreateUserFromBackoffice",
+          `${baseUrl()}/CreateUserFromBackoffice`,
           {
             method: "POST",
             headers: {

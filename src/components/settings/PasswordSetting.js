@@ -5,6 +5,8 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import baseUrl from '../api/baseUrl'
+
 
 const PasswordSetting = () => {
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const PasswordSetting = () => {
 
         body = JSON.stringify(body);
         let result = await fetch(
-          "https://thrybe.azurewebsites.net/api/BackofficeUser/PasswordSetting",
+          `${baseUrl()}/PasswordSetting`,
           {
             method: "POST",
             headers: {

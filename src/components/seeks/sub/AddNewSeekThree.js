@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-
+import baseUrl from '../../api/baseUrl'
 const AddNewSeekThree = ({
   page,
   setPage,
@@ -37,7 +37,7 @@ const AddNewSeekThree = ({
         };
         body = JSON.stringify(body);
         let result = await fetch(
-          "https://thrybe.azurewebsites.net/api/BackofficeUser/AddSeek",
+          `${baseUrl()}/AddSeek`,
           {
             method: "POST",
             headers: {

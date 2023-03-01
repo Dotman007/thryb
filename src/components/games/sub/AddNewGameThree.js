@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import baseUrl from '../../api/baseUrl'
 
 const AddNewGameThree = ({page,
   setPage,
@@ -77,7 +78,7 @@ const AddNewGameThree = ({page,
         body = JSON.stringify(body);
         
         let result = await fetch(
-          "https://thrybe.azurewebsites.net/api/BackofficeUser/CreateGame",
+          `${baseUrl()}/CreateGame`,
           {
             method: "POST",
             headers: {

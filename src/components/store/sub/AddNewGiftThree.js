@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import baseUrl from '../../api/baseUrl'
 
 const AddNewGiftThree = ({setStorePage,giftName,description,price, privacy,giftImg, setGiftImg,giftImage}) => {
   const token = sessionStorage.getItem("token");
@@ -39,7 +39,7 @@ const AddNewGiftThree = ({setStorePage,giftName,description,price, privacy,giftI
         formData.set("NairaEquivalent", price);
         formData.set("Status", true);
         let result = await fetch(
-          "https://thrybe.azurewebsites.net/api/BackofficeUser/AddGift",
+          `${baseUrl()}/AddGift"`,
           {
             method: "POST",
             headers: {
@@ -52,9 +52,9 @@ const AddNewGiftThree = ({setStorePage,giftName,description,price, privacy,giftI
         );
         result = await result;
         // toast.success("Success!");
-        for (const [key, value] of formData) {
-          console.log(key, `: ${value}`);
-      }
+      //   for (const [key, value] of formData) {
+      //     console.log(key, `: ${value}`);
+      // }
       }else{
         toast.error('All fields are required!')
       }

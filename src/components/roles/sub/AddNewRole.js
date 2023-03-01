@@ -5,7 +5,7 @@ import AddUsers from "./AddUsers";
 import Priviledge from "./Priviledge";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import baseUrl from '../../api/baseUrl'
 const AddNewRole = ({ showBtn, setShowBtn, rolesPage, setRolesPage }) => {
   const [roleName,setRoleName]= useState(1);
   const [roleList, setRoleList]= useState([]);
@@ -76,7 +76,7 @@ const AddNewRole = ({ showBtn, setShowBtn, rolesPage, setRolesPage }) => {
         body = JSON.stringify(body);
         console.log(body);
         let result = await fetch(
-          "https://thrybe.azurewebsites.net/api/BackofficeUser/AddUserToRole",
+          `${baseUrl()}/AddUserToRole`,
           {
             method: "POST",
             headers: {

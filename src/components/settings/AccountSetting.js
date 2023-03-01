@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-
+import baseUrl from '../api/baseUrl'
 const AccountSetting = ({userPicture,setUserPicture}) => {
   const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false);
@@ -41,7 +41,7 @@ const AccountSetting = ({userPicture,setUserPicture}) => {
           
           body = JSON.stringify(body);
           let result = await fetch(
-            "https://thrybe.azurewebsites.net/api/BackofficeUser/AccountSetting",
+            `${baseUrl()}/AccountSetting`,
             {
               method: "POST",
               headers: {
@@ -56,7 +56,6 @@ const AccountSetting = ({userPicture,setUserPicture}) => {
           toast.success("Success!");
           setUserPicture(reader)
           sessionStorage.setItem('img',reader);
-          // toast.info('Please login to see changes');
           setShowSpinner(false);
           setFullName('');
           setDescription('');

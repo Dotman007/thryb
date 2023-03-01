@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {fetchDataWithAxios} from '../../../config/fetchDataWithAxios'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import baseUrl from '../../api/baseUrl'
 const AddNewPlan = ({ page, setPage, plansPage, setPlansPage }) => {
   const navigate = useNavigate();
   const [planTypes,setPlanTypes]= useState([]);
@@ -49,7 +49,7 @@ const AddNewPlan = ({ page, setPage, plansPage, setPlansPage }) => {
         body = JSON.stringify(body);
         console.log(body);
         let result = await fetch(
-          "https://thrybe.azurewebsites.net/api/BackofficeUser/AddPlan",
+            `${baseUrl()}/AddPlan`,
           {
             method: "POST",
             headers: {
