@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://thrybe.azurewebsites.net/api/BackofficeUser",
+  baseURL: "https://thrybeapi.azurewebsites.net/api/BackofficeUser",
 });
