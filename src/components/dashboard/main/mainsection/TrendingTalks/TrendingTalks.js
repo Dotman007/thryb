@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../../../../api/base";
 const TrendingTalks = ({ page, setTrendingTalksSection }) => {
   const navigate = useNavigate();
-  const [showBtn, setShowBtn] = useState(true);
+  const [showSpinner, setShowSpinner] = useState(true);
   let [token, setToken] = useState(" ");
   let [trendingTalks, setTrendingTalks] = useState([]);
   useEffect(() => {
@@ -17,11 +17,15 @@ const TrendingTalks = ({ page, setTrendingTalksSection }) => {
 
   useEffect(() => {
     const fetchTrendingTalksList = async () => {
+      setShowSpinner(true);
       try {
         const response = await api.get("/TrendingTalks");
+        console.log('i am done');
         setTrendingTalks(response.data);
+        setShowSpinner(false);
       } catch (err) {
         console.log(err);
+      setShowSpinner(true);
         setTimeout(() => {
           sessionStorage.removeItem("token");
           sessionStorage.removeItem("img");
@@ -31,7 +35,7 @@ const TrendingTalks = ({ page, setTrendingTalksSection }) => {
       }
     };
     fetchTrendingTalksList();
-  });
+  },[]);
 
   return (
     <>
@@ -55,7 +59,7 @@ const TrendingTalks = ({ page, setTrendingTalksSection }) => {
                   <TrendingTalksList key={index} item={item} />
                 ))
             ) : (
-              <div className='spinner bg'></div>
+             showSpinner && <div className='spinner bg'></div>
             )}
           </ul>
         </div>

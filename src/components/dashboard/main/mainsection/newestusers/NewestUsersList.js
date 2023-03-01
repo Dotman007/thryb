@@ -22,7 +22,7 @@ const NewestUsersList = ({ index, item, showResult, setShowResult }) => {
       try {
         const response = await fetchDataWithAxios(
           "get",
-          `/GetRoomCreatorImage?id=10005`
+          `/GetRoomCreatorImage?id=${id}`
         );
         setUserImage(response.data);
         setDisplay(true);
@@ -63,7 +63,7 @@ const NewestUsersList = ({ index, item, showResult, setShowResult }) => {
           <span className='font-sm'>{index + 1}</span>&nbsp;
           <div>
             <img
-              src={`data:image/png;base64,${src}`}
+              src={src}
               style={{ height: "40px", width: "40px", borderRadius: "50%" }}
               alt=''
             />
