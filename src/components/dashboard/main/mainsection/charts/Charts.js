@@ -112,7 +112,7 @@ const Charts = ({ page, setBarChartSection }) => {
 
   async function fetchDailyAppUsage() {
     let results = await fetch(
-      "https://thrybe.azurewebsites.net/api/BackofficeUser/GetDailyAppUsage",
+      "https://thrybeapi.azurewebsites.net/api/BackofficeUser/GetDailyAppUsage",
       {
         method: "POST",
         headers: {
