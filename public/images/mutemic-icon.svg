@@ -1,0 +1,23 @@
+<svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_b_1979_21238)">
+<path d="M0.833496 11C0.833496 4.92487 5.75836 0 11.8335 0C17.9086 0 22.8335 4.92487 22.8335 11C22.8335 17.0751 17.9086 22 11.8335 22C5.75836 22 0.833496 17.0751 0.833496 11Z" fill="#842A83" fill-opacity="0.75"/>
+<g clip-path="url(#clip0_1979_21238)">
+<path d="M6.3335 5.5L17.3335 16.5" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.3335 9.67005V7.00005C13.3339 6.62806 13.196 6.26921 12.9467 5.99315C12.6974 5.71709 12.3543 5.54352 11.9842 5.50613C11.6141 5.46875 11.2434 5.57022 10.9439 5.79084C10.6444 6.01146 10.4375 6.3355 10.3635 6.70005M10.3335 9.50005V11C10.3338 11.2965 10.4219 11.5863 10.5867 11.8327C10.7516 12.0791 10.9857 12.2712 11.2596 12.3846C11.5336 12.498 11.835 12.5277 12.1258 12.47C12.4166 12.4122 12.6837 12.2696 12.8935 12.06L10.3335 9.50005Z" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M15.3336 10V11C15.3334 11.2062 15.315 11.412 15.2786 11.615M14.3336 13.475C13.8455 13.9732 13.2197 14.3142 12.5364 14.4543C11.8531 14.5944 11.1436 14.5271 10.4988 14.2611C9.85407 13.9952 9.30347 13.5426 8.91767 12.9616C8.53188 12.3805 8.32849 11.6975 8.33359 11V10L14.3336 13.475Z" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.8335 14.5V16.5" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.8335 16.5H13.8335" stroke="white" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_b_1979_21238" x="-3.1665" y="-4" width="30" height="30" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImage" stdDeviation="2"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_1979_21238"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_1979_21238" result="shape"/>
+</filter>
+<clipPath id="clip0_1979_21238">
+<rect width="12" height="12" fill="white" transform="translate(5.8335 5)"/>
+</clipPath>
+</defs>
+</svg>
