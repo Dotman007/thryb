@@ -20,7 +20,6 @@ const TrendingTalks = ({ page, setTrendingTalksSection }) => {
       setShowSpinner(true);
       try {
         const response = await api.get("/TrendingTalks");
-        console.log('i am done');
         setTrendingTalks(response.data);
         setShowSpinner(false);
       } catch (err) {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchDataWithAxios } from "../../config/fetchDataWithAxios";
 import { useNavigate } from "react-router-dom";
+import { ClickAwayListener } from '@mui/base';
 
 const SeeksList = ({
   showBtn,
@@ -17,6 +18,7 @@ const SeeksList = ({
   const [display, setDisplay]= useState('');
   const [userImage, setUserImage] = useState("");
   const [userName, setUserName] = useState("");
+  const [showOverlayMenu, setShowOverlayMenu] = useState(false);
   let cost = item.cost || "unknown";
   let authorImage = userImage?.image?.includes("pic")
   ? userImage?.image?.substring(8)
@@ -92,6 +94,22 @@ const SeeksList = ({
       <tr
         className={`${!display && 'hide'}`}
         style={{ backgroundColor: "white" }}
+      >
+        <td>
+          <input
+            type='checkbox'
+            id='check'
+            onChange={(e) => {
+              if (e.currentTarget.checked) {
+                setShowBtn(false);
+              } else {
+                setShowBtn(true);
+              }
+            }}
+          />
+        </td>
+        <td 
+        colSpan='2' 
         onClick={() => {
           setSeekInfo({
             cost,
@@ -107,22 +125,7 @@ const SeeksList = ({
             seekId,
           });
           setSeeksPage("single");
-        }}
-      >
-        <td>
-          <input
-            type='checkbox'
-            id='check'
-            onChange={(e) => {
-              if (e.currentTarget.checked) {
-                setShowBtn(false);
-              } else {
-                setShowBtn(true);
-              }
-            }}
-          />
-        </td>
-        <td colSpan='2'>
+        }}>
           <div className='d-flex align-items-center'>
             <div>
               <h6 className='f-weight-600'>
@@ -140,30 +143,98 @@ const SeeksList = ({
             </div>
           </div>
         </td>
-        <td>
+        <td 
+        onClick={() => {
+          setSeekInfo({
+            cost,
+            authorImage,
+            creatorName,
+            duration,
+            startTime,
+            startDate,
+            firstDescription,
+            secondDescription,
+            status,
+            userId,
+            seekId,
+          });
+          setSeeksPage("single");
+        }}>
           <p className='mb-0 f-weight-600'>
             <span className="sm-time">{startDate} <br /> {startTime}</span>&nbsp;&nbsp;
           </p>
         </td>
-        <td>
+        <td 
+        onClick={() => {
+          setSeekInfo({
+            cost,
+            authorImage,
+            creatorName,
+            duration,
+            startTime,
+            startDate,
+            firstDescription,
+            secondDescription,
+            status,
+            userId,
+            seekId,
+          });
+          setSeeksPage("single");
+        }}>
           <p className='mb-0 f-weight-600'>{cost} Tokens</p>
         </td>
-        <td>
+        <td 
+        onClick={() => {
+          setSeekInfo({
+            cost,
+            authorImage,
+            creatorName,
+            duration,
+            startTime,
+            startDate,
+            firstDescription,
+            secondDescription,
+            status,
+            userId,
+            seekId,
+          });
+          setSeeksPage("single");
+        }}>
           <p className='mb-0 f-weight-600'>{duration}</p>
         </td>
-        <td>
+        <td 
+        onClick={() => {
+          setSeekInfo({
+            cost,
+            authorImage,
+            creatorName,
+            duration,
+            startTime,
+            startDate,
+            firstDescription,
+            secondDescription,
+            status,
+            userId,
+            seekId,
+          });
+          setSeeksPage("single");
+        }}>
           <div className={`${status ? "successful-status" : "expired-status"}`}>
             {status ? "Active" : "Expired"}
           </div>
         </td>
         <td>
+        <ClickAwayListener onClickAway={() => setShowOverlayMenu(false)} mouseEvent={'onMouseDown'}>
           <div className='dropdown position-relative ml-4'>
             <button
               className='btn'
               type='button'
               data-toggle='dropdown'
               aria-haspopup='true'
-              aria-expanded='false'
+              aria-expanded='false' 
+              onClick={()=>{
+                setShowOverlayMenu(true);
+              }}
             >
               <svg
                 width='12'
@@ -194,22 +265,23 @@ const SeeksList = ({
               </svg>
             </button>
             <div
-              className='dropdown-menu mt-3'
+              className={`dropdown-menu mt-3 ${showOverlayMenu && 'show-overlay-menu'}`}
               aria-labelledby='dropdownMenuButton'
             >
               <div className='drop-down-menu-inner'>
                 <a className='dropdown-item' href='#'>
-                  Action
+                  Suspend
                 </a>
                 <a className='dropdown-item' href='#'>
-                  Another action
+                  Delete
                 </a>
                 <a className='dropdown-item' href='#'>
-                  Something else here
+                  Update
                 </a>
               </div>
             </div>
           </div>
+          </ClickAwayListener>
         </td>
       </tr>
     </>

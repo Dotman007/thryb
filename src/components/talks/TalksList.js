@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchDataWithAxios } from "../../config/fetchDataWithAxios";
 import Members from "./Members";
+import { ClickAwayListener } from '@mui/base';
+
 
 const TalksList = ({
   showBtn,
@@ -26,6 +28,7 @@ const TalksList = ({
   let startTime = item.dateCreated.substring(item.dateCreated.lastIndexOf('T') + 1,item.dateCreated.lastIndexOf('T') + 8) || "unknown";
   let [speakers, setSpeakers] = useState([]);
   let [members, setMembers] = useState([]);
+  const [showOverlayMenu, setShowOverlayMenu] = useState(false);
   let status = item.status || "unknown";
   let talkid = item.talkId || -1;
   let talkName = item.talkName || "unknown";
@@ -57,23 +60,7 @@ const TalksList = ({
       <tr
         className={`${!display && 'hide'}`}
         style={{ backgroundColor: "rgba(255, 255, 255, 0.65)" }}
-        onClick={() => {
-          if (!showSpinner) {
-            setTalkId(talkid);
-            setSingleTalkInfo({
-              author,
-              date,
-              startTime,
-              startDate,
-              speakers,
-              members,
-              status,
-              talkId,
-              talkName,
-            });
-            setTalksPage("single");
-          }
-        }}
+        
       >
         <td>
           <input
@@ -91,8 +78,21 @@ const TalksList = ({
         <td
           colSpan='2'
           onClick={() => {
-            setTalkId(talkid);
-            setTalksPage("single");
+            if (!showSpinner) {
+              setTalkId(talkid);
+              setSingleTalkInfo({
+                author,
+                date,
+                startTime,
+                startDate,
+                speakers,
+                members,
+                status,
+                talkId,
+                talkName,
+              });
+              setTalksPage("single");
+            }
           }}
         >
           <div
@@ -110,7 +110,23 @@ const TalksList = ({
             </div>
           </div>
         </td>
-        <td>
+        <td onClick={() => {
+          if (!showSpinner) {
+            setTalkId(talkid);
+            setSingleTalkInfo({
+              author,
+              date,
+              startTime,
+              startDate,
+              speakers,
+              members,
+              status,
+              talkId,
+              talkName,
+            });
+            setTalksPage("single");
+          }
+        }}>
           <div className='d-flex flex-column align-items-start'>
             {talkid !== -1 && (
               <Speakers
@@ -125,7 +141,24 @@ const TalksList = ({
             </span>
           </div>
         </td>
-        <td>
+        <td 
+        onClick={() => {
+          if (!showSpinner) {
+            setTalkId(talkid);
+            setSingleTalkInfo({
+              author,
+              date,
+              startTime,
+              startDate,
+              speakers,
+              members,
+              status,
+              talkId,
+              talkName,
+            });
+            setTalksPage("single");
+          }
+        }}>
           <div className='d-flex align-items-center'>
             <Members id={talkid} members={members} setMembers={setMembers} />
             <span className='font-xs f-weight-700'>
@@ -134,12 +167,46 @@ const TalksList = ({
             </span>
           </div>
         </td>
-        <td>
+        <td 
+        onClick={() => {
+          if (!showSpinner) {
+            setTalkId(talkid);
+            setSingleTalkInfo({
+              author,
+              date,
+              startTime,
+              startDate,
+              speakers,
+              members,
+              status,
+              talkId,
+              talkName,
+            });
+            setTalksPage("single");
+          }
+        }}>
           <div>
-            <span className='f-weight-600 sm-time'>{startDate} {startTime}</span>
+            <span className='f-weight-600 sm-time'>{startDate} <br /> {startTime}</span>
           </div>
         </td>
-        <td>
+        <td 
+        onClick={() => {
+          if (!showSpinner) {
+            setTalkId(talkid);
+            setSingleTalkInfo({
+              author,
+              date,
+              startTime,
+              startDate,
+              speakers,
+              members,
+              status,
+              talkId,
+              talkName,
+            });
+            setTalksPage("single");
+          }
+        }}>
           <div
             className={`${
               status.toLowerCase() == "active"
@@ -155,6 +222,7 @@ const TalksList = ({
           </div>
         </td>
         <td>
+        <ClickAwayListener onClickAway={() => setShowOverlayMenu(false)} mouseEvent={'onMouseDown'}>
           <div className='dropdown position-relative ml-4'>
             <button
               className='btn'
@@ -162,6 +230,9 @@ const TalksList = ({
               data-toggle='dropdown'
               aria-haspopup='true'
               aria-expanded='true'
+              onClick={()=>{
+                setShowOverlayMenu(true);
+              }}
             >
               <svg
                 width='12'
@@ -192,7 +263,7 @@ const TalksList = ({
               </svg>
             </button>
             <div
-              className='dropdown-menu mt-3 my---dropdown'
+              className={`dropdown-menu mt-3 ${showOverlayMenu && 'show-overlay-menu'}`}
               aria-labelledby='dropdownMenuButton'
               x-placement='top-start'
               style={{
@@ -205,17 +276,18 @@ const TalksList = ({
             >
               <div className='drop-down-menu-inner'>
                 <a className='dropdown-item' href='#'>
-                  Action
+                  Suspend
                 </a>
                 <a className='dropdown-item' href='#'>
-                  Another action
+                  Delete
                 </a>
                 <a className='dropdown-item' href='#'>
-                  Something else here
+                  Update
                 </a>
               </div>
             </div>
           </div>
+          </ClickAwayListener>
         </td>
       </tr>
     </>

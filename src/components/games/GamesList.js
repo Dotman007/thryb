@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from "react";
 import GamesImg from "./GamesImg";
+import { ClickAwayListener } from '@mui/base';
 
 const GamesList = ({ showBtn, setShowBtn, gamesPage, setGamesPage, item, search, setSearch, singleGame, setSingleGame }) => {
   let banner = item?.banner || "assets/images/unknown.jpg";
@@ -12,6 +13,8 @@ const GamesList = ({ showBtn, setShowBtn, gamesPage, setGamesPage, item, search,
     participants.length < 4 ? 0 : participants.length - 4;
   const [display, setDisplay] = useState('');
   let id = item?.id || -1;
+  const [showOverlayMenu, setShowOverlayMenu] = useState(false);
+
 
   useEffect(() => {
     if (search !== "" && name !== "unknown") {
@@ -34,17 +37,7 @@ const GamesList = ({ showBtn, setShowBtn, gamesPage, setGamesPage, item, search,
 
   return (
     <>
-      <tr style={{ backgroundColor: "rgba(255, 255, 255, 0.65)" }} className={`${!display && 'hide'}`}  onClick={()=>{
-        setSingleGame({
-          banner,
-          datePublished,
-          type,
-          name,
-          status,
-          participants,
-          id
-        });
-      }}>
+      <tr style={{ backgroundColor: "rgba(255, 255, 255, 0.65)" }} className={`${!display && 'hide'}`}>
         <td>
           <input
             type='checkbox'
@@ -58,14 +51,36 @@ const GamesList = ({ showBtn, setShowBtn, gamesPage, setGamesPage, item, search,
             }}
           />
         </td>
-        <td>
+        <td 
+        onClick={()=>{
+        setSingleGame({
+          banner,
+          datePublished,
+          type,
+          name,
+          status,
+          participants,
+          id
+        });
+      }}>
           <img
             src={banner}
             alt='Game Banner'
             className={`banner-img ${!status && "blur"}`}
           />
         </td>
-        <td onClick={() => setGamesPage("single")}>
+        <td 
+        onClick={()=>{
+        setSingleGame({
+          banner,
+          datePublished,
+          type,
+          name,
+          status,
+          participants,
+          id
+        });
+      }}>
           <div className='d-flex flex-column align-items-start'>
             <h6 className='font-sm2 f-weight-700 mt-2'>{name}</h6>
             <div className='d-flex align-items-center'>
@@ -79,10 +94,32 @@ const GamesList = ({ showBtn, setShowBtn, gamesPage, setGamesPage, item, search,
             </div>
           </div>
         </td>
-        <td>
+        <td 
+        onClick={()=>{
+        setSingleGame({
+          banner,
+          datePublished,
+          type,
+          name,
+          status,
+          participants,
+          id
+        });
+      }}>
           <h6 className='mb-0 f-weight-600 font-sm2'>{type}</h6>
         </td>
-        <td>
+        <td
+         onClick={()=>{
+        setSingleGame({
+          banner,
+          datePublished,
+          type,
+          name,
+          status,
+          participants,
+          id
+        });
+      }}>
           <div className='d-flex align-items-center'>
             <div>
               <GamesImg data={participants} />
@@ -93,7 +130,18 @@ const GamesList = ({ showBtn, setShowBtn, gamesPage, setGamesPage, item, search,
             </span>
           </div>
         </td>
-        <td>
+        <td 
+        onClick={()=>{
+        setSingleGame({
+          banner,
+          datePublished,
+          type,
+          name,
+          status,
+          participants,
+          id
+        });
+      }}>
           <div className='successful-status'>
             <span
               className={`${status ? "successful-status" : "expired-status"}`}
@@ -103,6 +151,7 @@ const GamesList = ({ showBtn, setShowBtn, gamesPage, setGamesPage, item, search,
           </div>
         </td>
         <td>
+        <ClickAwayListener onClickAway={() => setShowOverlayMenu(false)} mouseEvent={'onMouseDown'}>
           <div className='dropdown position-relative ml-4'>
             <button
               className='btn'
@@ -110,6 +159,9 @@ const GamesList = ({ showBtn, setShowBtn, gamesPage, setGamesPage, item, search,
               data-toggle='dropdown'
               aria-haspopup='true'
               aria-expanded='true'
+              onClick={()=>{
+                setShowOverlayMenu(true);
+              }}
             >
               <svg
                 width='12'
@@ -140,7 +192,7 @@ const GamesList = ({ showBtn, setShowBtn, gamesPage, setGamesPage, item, search,
               </svg>
             </button>
             <div
-              className='dropdown-menu mt-3 my---dropdown'
+              className={`dropdown-menu mt-3 ${showOverlayMenu && 'show-overlay-menu'}`}
               aria-labelledby='dropdownMenuButton'
               x-placement='top-start'
               style={{
@@ -153,17 +205,18 @@ const GamesList = ({ showBtn, setShowBtn, gamesPage, setGamesPage, item, search,
             >
               <div className='drop-down-menu-inner'>
                 <a className='dropdown-item' href='#'>
-                  Action
+                  Suspend
                 </a>
                 <a className='dropdown-item' href='#'>
-                  Another action
+                  Delete
                 </a>
                 <a className='dropdown-item' href='#'>
-                  Something else here
+                  Update
                 </a>
               </div>
             </div>
           </div>
+          </ClickAwayListener>
         </td>
       </tr>
     </>

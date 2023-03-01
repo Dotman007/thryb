@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { fetchDataWithAxios } from "../../config/fetchDataWithAxios";
 import { useNavigate } from "react-router-dom";
+import { ClickAwayListener } from '@mui/base';
+
 const UsersList = ({
   showBtn,
   setShowBtn,
@@ -16,6 +18,7 @@ const UsersList = ({
   setSearch
 }) => {
   let navigate = useNavigate();
+  const [showOverlayMenu, setShowOverlayMenu] = useState(false);
   const [userAvatarName, setUserAvatarName] = useState("");
   let status = item.status || "unknown";
   let email = item.email || "unknown";
@@ -110,6 +113,18 @@ const UsersList = ({
             className='d-flex align-items-center gap-10'
             onClick={() => {
               setUserId(userid);
+              setSingleUserInfo({
+                status,
+                email,
+                userid,
+                flag,
+                avatar,
+                fullName,
+                profession,
+                age,
+                isVerified,
+                location,
+              });
               setUsersPage("single");
             }}
           >
@@ -125,18 +140,64 @@ const UsersList = ({
             </div>
           </div>
         </td>
-        <td>{email}</td>
-        <td>
+        <td  onClick={() => {
+            setUserId(userid);
+            setSingleUserInfo({
+              status,
+              email,
+              userid,
+              flag,
+              avatar,
+              fullName,
+              profession,
+              age,
+              isVerified,
+              location,
+            });
+            setUsersPage("single");
+          }}>{email}</td>
+        <td  onClick={() => {
+            setUserId(userid);
+            setSingleUserInfo({
+              status,
+              email,
+              userid,
+              flag,
+              avatar,
+              fullName,
+              profession,
+              age,
+              isVerified,
+              location,
+            });
+            setUsersPage("single");
+          }}>
           <span>
             <img src='./assets/images/Location.svg' alt='Location' />
             &nbsp;&nbsp; {item.location} &nbsp;&nbsp;
             <img src={flag} alt='Flag' className='img-location' />
           </span>
         </td>
-        <td>
+        <td  onClick={() => {
+            setUserId(userid);
+            setSingleUserInfo({
+              status,
+              email,
+              userid,
+              flag,
+              avatar,
+              fullName,
+              profession,
+              age,
+              isVerified,
+              location,
+            });
+            setUsersPage("single");
+          }}>
           <div className={`${status.toLowerCase()}-status`}>{status}</div>
         </td>
         <td>
+        <ClickAwayListener onClickAway={() => setShowOverlayMenu(false)} mouseEvent={'onMouseDown'}>
           <div className='dropdown position-relative ml-4 showOnHover'>
             <button
               className='btn'
@@ -144,6 +205,9 @@ const UsersList = ({
               data-toggle='dropdown'
               aria-haspopup='true'
               aria-expanded='false'
+              onClick={()=>{
+                setShowOverlayMenu(true);
+              }}
             >
               <svg
                 width='12'
@@ -174,22 +238,23 @@ const UsersList = ({
               </svg>
             </button>
             <div
-              className='dropdown-menu mt-3'
+              className={`dropdown-menu mt-3 ${showOverlayMenu && 'show-overlay-menu'}`}
               aria-labelledby='dropdownMenuButton'
             >
               <div className='drop-down-menu-inner'>
                 <a className='dropdown-item' href='#'>
-                  Action
+                  Suspend
                 </a>
                 <a className='dropdown-item' href='#'>
-                  Another action
+                  Delete
                 </a>
-                <a className='dropdown-item' href='#'>
+                {/* <a className='dropdown-item' href='#'>
                   Something else here
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
+        </ClickAwayListener>
         </td>
       </tr>
     </>

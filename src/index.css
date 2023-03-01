@@ -1996,3 +1996,7 @@ overflow-x: auto !important;
 .sm-time{
   font-size: 10px;
 }
+
+.show-overlay-menu{
+  display: block !important;
+}
