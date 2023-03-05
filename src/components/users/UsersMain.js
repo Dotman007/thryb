@@ -4,6 +4,9 @@ import UsersListContainer from "./UsersListContainer";
 import UsersStatArea from "./UsersStatArea";
 import UsersSubNav from "./UsersSubNav";
 import { useState, useEffect } from "react";
+import UsersOverlay from "./UsersOverlay";
+import { ClickAwayListener } from '@mui/base';
+
 const UsersMain = ({
   page,
   setPage,
@@ -25,9 +28,21 @@ const UsersMain = ({
   search,
   setSearch
 }) => {
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [userAction, setUserAction] = useState({
+    type : '',
+    id : ''
+  });
   return (
     <div className='main-content'>
       <div className='container-fluid'>
+
+      {showOverlay && <UsersOverlay 
+      setShowOverlay = {setShowOverlay}
+      userAction = {userAction}
+      setUserAction = {setUserAction}
+      />}
+
         <UsersBreadCrumb
           page={page}
           setPage={setPage}
@@ -68,6 +83,8 @@ const UsersMain = ({
           setFilter={setFilter}
           search={search}
           setSearch={setSearch}
+          setShowOverlay = {setShowOverlay}
+          setUserAction = {setUserAction}
         />
       </div>
     </div>

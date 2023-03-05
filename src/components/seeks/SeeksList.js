@@ -39,7 +39,7 @@ const SeeksList = ({
       try {
         const response = await fetchDataWithAxios(
           "get",
-          `/GetRoomCreatorImage?id=${10005}`
+        `/GetRoomCreatorImage?id=${userId}`
         );
         setUserImage(response.data);
       } catch (err) {

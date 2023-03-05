@@ -15,7 +15,9 @@ const UsersList = ({
   singleUserInfo,
   setSingleUserInfo,
   search,
-  setSearch
+  setSearch,
+  setShowOverlay,
+  setUserAction
 }) => {
   let navigate = useNavigate();
   const [showOverlayMenu, setShowOverlayMenu] = useState(false);
@@ -242,10 +244,24 @@ const UsersList = ({
               aria-labelledby='dropdownMenuButton'
             >
               <div className='drop-down-menu-inner'>
-                <a className='dropdown-item' href='#'>
+                <a className='dropdown-item' href='#' onClick={(e)=> {
+                  e.preventDefault();
+                  setUserAction({
+                    type : 'suspend',
+                    id : userid
+                  })
+                  setShowOverlay(true);
+                  }}>
                   Suspend
                 </a>
-                <a className='dropdown-item' href='#'>
+                <a className='dropdown-item' href='#' onClick={(e)=> {
+                  e.preventDefault();
+                  setUserAction({
+                    type : 'delete',
+                    id : userid
+                  })
+                  setShowOverlay(true);
+                  }}>
                   Delete
                 </a>
                 {/* <a className='dropdown-item' href='#'>

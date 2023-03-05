@@ -22,7 +22,9 @@ const UsersListContainer = ({
   setShowSpinner, 
   setFilter,
   search,
-  setSearch
+  setSearch,
+  setShowOverlay,
+  setUserAction
 }) => {
   let users = usersList;
   let navigate = useNavigate();
@@ -85,6 +87,8 @@ const UsersListContainer = ({
                         setSingleUserInfo={setSingleUserInfo}
                         search={search}
                         setSearch={setSearch}
+                        setShowOverlay = {setShowOverlay}
+                        setUserAction = {setUserAction}
                       />
                     ))}
                 </tbody>
